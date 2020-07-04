@@ -1,12 +1,17 @@
-import React, { useContext, Fragment } from 'react';
+import React, { useContext, useEffect, Fragment } from 'react';
 import ContactContext from '../../Context/Contact/contactContext';
 import ContactItem from './ContactItem';
 const Contacts = () => {
   const contactContext = useContext(ContactContext);
-  const { contacts } = contactContext;
+  const { contacts, filtered } = contactContext;
+
+  if (contacts.length === 0) {
+    return <h4>Have no contacts at moment</h4>;
+  }
+
   return (
     <Fragment>
-      {contacts.map(contact => (
+      {(filtered ? filtered : contacts).map(contact => (
         <ContactItem key={contact.id} contact={contact}></ContactItem>
       ))}
     </Fragment>
