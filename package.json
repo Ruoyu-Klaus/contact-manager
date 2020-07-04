@@ -5,8 +5,11 @@
   "main": "server.js",
   "author": "ruoyu",
   "scripts": {
-    "start": "yarn server.js",
-    "server": "nodemon server.js"
+    "start": "npm server.js",
+    "server": "nodemon server.js",
+    "client": "npm start --prefix client",
+    "clientinstall": "npm install --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client \""
   },
   "license": "MIT",
   "dependencies": {
