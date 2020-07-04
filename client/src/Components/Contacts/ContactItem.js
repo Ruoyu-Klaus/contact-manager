@@ -25,7 +25,7 @@ const ContactItem = ({ contact }) => {
             (type === 'professional' ? 'badge-success' : 'badge-primary')
           }
         >
-          {type.charAt(0).toUpperCase() + type.slice(1)}
+          {type === 'professional' ? '工作' : '生活'}
         </span>
       </h3>
       <ul className='list'>
@@ -45,10 +45,10 @@ const ContactItem = ({ contact }) => {
           className='btn btn-dark btn-sm'
           onClick={() => setCurrent(contact)}
         >
-          Edit
+          编辑
         </button>
         <button className='btn btn-danger btn-sm' onClick={onDelete}>
-          Delete
+          删除
         </button>
       </p>
     </div>

@@ -19,12 +19,7 @@ const ContactFilter = () => {
   };
   return (
     <div>
-      <input
-        ref={text}
-        type='text'
-        placeholder='Filter Contact...'
-        onChange={onChange}
-      />
+      <input ref={text} type='text' placeholder='搜索...' onChange={onChange} />
     </div>
   );
 };

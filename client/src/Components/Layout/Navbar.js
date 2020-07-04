@@ -7,12 +7,14 @@ const Navbar = ({ title, icon }) => {
     <div className='navbar bg-primary'>
       <h1>
         <i className={icon} />
-        {title}
+        <Link to='/'>{title}</Link>
       </h1>
       <ul>
         <li>
-          <Link to='/'>Home</Link>
-          <Link to='/about'>About</Link>
+          <Link to='/'>首页</Link>
+          <Link to='/about'>关于</Link>
+          <Link to='/register'>注册</Link>
+          <Link to='/login'>登陆</Link>
         </li>
       </ul>
     </div>

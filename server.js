@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const connectDB = require('./config/db');
 
 connectDB();
@@ -6,6 +7,7 @@ const app = express();
 
 //User middleware
 app.use(express.json({ extended: false }));
+app.use(cors());
 
 app.get('/', (req, res, next) => {
   res.json({ msg: 'Hello, this is the contact manager API.' });

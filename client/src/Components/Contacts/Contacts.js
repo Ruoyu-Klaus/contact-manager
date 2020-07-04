@@ -1,4 +1,5 @@
-import React, { useContext, useEffect, Fragment } from 'react';
+import React, { useContext, Fragment } from 'react';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import ContactContext from '../../Context/Contact/contactContext';
 import ContactItem from './ContactItem';
 const Contacts = () => {
@@ -6,14 +7,18 @@ const Contacts = () => {
   const { contacts, filtered } = contactContext;
 
   if (contacts.length === 0) {
-    return <h4>Have no contacts at moment</h4>;
+    return <h4>目前暂无联系人</h4>;
   }
 
   return (
     <Fragment>
-      {(filtered ? filtered : contacts).map(contact => (
-        <ContactItem key={contact.id} contact={contact}></ContactItem>
-      ))}
+      <TransitionGroup className='todo-list'>
+        {(filtered ? filtered : contacts).map(contact => (
+          <CSSTransition key={contact.id} timeout={500} classNames='item'>
+            <ContactItem contact={contact}></ContactItem>
+          </CSSTransition>
+        ))}
+      </TransitionGroup>
     </Fragment>
   );
 };

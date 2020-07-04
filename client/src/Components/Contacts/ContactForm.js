@@ -14,6 +14,7 @@ const ContactForm = () => {
     } else {
       setContact(defaultState);
     }
+    //eslint-disable-next-line
   }, [contactContext, current]);
   // monitor changes based on the name attribute of the inputs
   const onChange = e =>
@@ -39,30 +40,30 @@ const ContactForm = () => {
   return (
     <form onSubmit={onSubmit}>
       <h2 className='text-primary'>
-        {current ? 'Edit Contact' : 'Add Contact'}
+        {current ? '编辑联系人' : '添加新联系人'}
       </h2>
       <input
         type='text'
-        placeholder='Name'
+        placeholder='姓名'
         name='name'
         value={name}
         onChange={onChange}
       />
       <input
         type='email'
-        placeholder='Email'
+        placeholder='邮箱'
         name='email'
         value={email}
         onChange={onChange}
       />
       <input
         type='text'
-        placeholder='Phone'
+        placeholder='电话'
         name='phone'
         value={phone}
         onChange={onChange}
       />
-      <h5>Contact Type</h5>
+      <h5>联系人类别</h5>
       <input
         type='radio'
         name='type'
@@ -70,7 +71,7 @@ const ContactForm = () => {
         checked={type === 'personal'}
         onChange={onChange}
       />{' '}
-      Personal{' '}
+      生活{' '}
       <input
         type='radio'
         name='type'
@@ -78,18 +79,18 @@ const ContactForm = () => {
         checked={type === 'professional'}
         onChange={onChange}
       />{' '}
-      Professional
+      工作
       <div>
         <input
           type='submit'
-          value={current ? 'Update Contact' : 'Add Contact'}
+          value={current ? '更新联系人' : '添加联系人'}
           className='btn btn-primary btn-block'
         />
       </div>
       {current && (
         <div>
           <button className='btn btn-light btn-block' onClick={clearAll}>
-            Clear
+            返回
           </button>
         </div>
       )}
