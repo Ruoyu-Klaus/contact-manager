@@ -10,9 +10,9 @@ const app = express();
 app.use(express.json({ extended: false }));
 app.use(cors());
 
-app.get('/api', (req, res) => {
-  res.json({ msg: 'Hello, this is the contact manager API.' });
-});
+// app.get('/api', (req, res) => {
+//   res.json({ msg: 'Hello, this is the contact manager API.' });
+// });
 
 // Define Routes
 app.use('/api/users', require('./routes/users'));
