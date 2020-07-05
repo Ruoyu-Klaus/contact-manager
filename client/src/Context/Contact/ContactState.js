@@ -1,6 +1,6 @@
 import React, { useReducer } from 'react';
 import axios from 'axios';
-import { v4 as uuid } from 'uuid';
+// import { v4 as uuid } from 'uuid';
 import contactContext from './contactContext';
 import contactReducer from './contactReducer';
 import {
@@ -26,7 +26,6 @@ const ContactState = props => {
 
   const [state, dispatch] = useReducer(contactReducer, initialState);
 
-  axios.defaults.baseURL = 'http://localhost:4000';
   //GET CONTACT
   const getContact = async () => {
     try {

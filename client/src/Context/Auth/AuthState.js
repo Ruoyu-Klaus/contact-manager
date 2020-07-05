@@ -16,8 +16,6 @@ import {
 
 import setAuthToken from '../../utils/setAuthToken';
 
-axios.defaults.baseURL = 'http://localhost:4000';
-
 const AuthState = props => {
   const initialState = {
     token: localStorage.getItem('token'),
