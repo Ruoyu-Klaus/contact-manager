@@ -22,13 +22,12 @@ const ContactForm = () => {
 
   const onSubmit = e => {
     e.preventDefault();
-    if (current === null) {
+    if (current !== null) {
+      updateContact(contact);
+    } else {
       // @param: Current state of contact
       addContact(contact);
-    } else {
-      updateContact(contact);
     }
-
     setContact(defaultState);
   };
 

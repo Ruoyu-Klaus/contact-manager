@@ -8,6 +8,7 @@ import Home from './Components/Pages/Home';
 import About from './Components/Pages/About';
 import Register from './Components/Auth/Register';
 import Login from './Components/Auth/Login';
+import PrivateRoute from './Components/Routing/PrivateRoute';
 
 import ContactState from './Context/Contact/ContactState';
 import AuthState from './Context/Auth/AuthState';
@@ -29,7 +30,7 @@ const App = () => {
               <div className='container'>
                 <Alerts />
                 <Switch>
-                  <Route exact path='/' component={Home} />
+                  <PrivateRoute exact path='/' component={Home} />
                   <Route exact path='/about' component={About} />
                   <Route exact path='/register' component={Register} />
                   <Route exact path='/login' component={Login} />

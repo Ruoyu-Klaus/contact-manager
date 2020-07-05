@@ -1,19 +1,48 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
+import AlertContext from '../../Context/Alert/alterContext';
+import AuthContext from '../../Context/Auth/authContext';
 
-const Login = () => {
+const Login = props => {
+  const alertContext = useContext(AlertContext);
+  const { setAlert } = alertContext;
+
+  const authContext = useContext(AuthContext);
+  const { loginUser, error, clearError, isAuthenticated } = authContext;
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      props.history.push('/');
+    }
+    if (error === 'Invaild Credentials for Email') {
+      setAlert('该邮箱不存在', 'danger');
+      clearError();
+    }
+    if (error === 'Invalid Credentials for Password') {
+      setAlert('密码错误', 'danger');
+      clearError();
+    }
+    //eslint-disable-next-line
+  }, [error, props.history, isAuthenticated]);
+
   const [user, setUser] = useState({
     email: '',
     password: '',
   });
+  const { email, password } = user;
 
   const onChange = e => setUser({ ...user, [e.target.name]: e.target.value });
 
   const onSubmit = e => {
     e.preventDefault();
-    console.log('Login submit' + user);
+    if (!email) {
+      setAlert('请输入邮箱', 'danger');
+    } else if (!password) {
+      setAlert('请输入密码', 'danger');
+    } else {
+      loginUser({ email, password });
+    }
   };
 
-  const { email, password } = user;
   return (
     <div className='form-container'>
       <h1>
@@ -22,7 +51,7 @@ const Login = () => {
       <form onSubmit={onSubmit}>
         <div className='form-group'>
           <label htmlFor='email'>邮箱</label>
-          <input type='email' name='emial' value={email} onChange={onChange} />
+          <input type='email' name='email' value={email} onChange={onChange} />
         </div>
         <div className='form-group'>
           <label htmlFor='password'>密码</label>

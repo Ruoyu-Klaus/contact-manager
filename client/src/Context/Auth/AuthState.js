@@ -23,7 +23,7 @@ const AuthState = props => {
     token: localStorage.getItem('token'),
     isAuthenticated: null,
     user: null,
-    loading: true,
+    loading: false,
     error: null,
   };
 
@@ -56,9 +56,21 @@ const AuthState = props => {
   };
 
   // Login User
-  const loginUser = () => console.log('loin user');
+  const loginUser = async formData => {
+    const config = { header: { 'content-type': 'application/json' } };
+    try {
+      const res = await axios.post('/api/auth', formData, config);
+      //PASS THE TOKEN ONCE SUCCESS
+      dispatch({ type: LOGIN_SUCCESS, payload: res.data });
+      loadUser();
+    } catch (error) {
+      console.log(error.response);
+      dispatch({ type: LOGIN_FAIL, payload: error.response.data.msg });
+    }
+  };
+
   //Logout
-  const logOut = () => console.log('logout');
+  const logoutUser = () => dispatch({ type: LOGINOUT });
   //Clear Errors
   const clearError = () => dispatch({ type: CLEAR_ERRORS });
   return (
@@ -72,7 +84,7 @@ const AuthState = props => {
         register,
         loadUser,
         loginUser,
-        logOut,
+        logoutUser,
         clearError,
       }}
     >
